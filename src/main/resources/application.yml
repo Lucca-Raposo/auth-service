@@ -1,3 +1,14 @@
+jwt:
+  public:
+    key: classpath:keys/public.pem
+  private:
+    key: classpath:keys/private.pem
+  expiresIn: 1800
+
+admin-user:
+  username: admin
+  password: admin
+
 spring:
   application:
     name: auth-service
