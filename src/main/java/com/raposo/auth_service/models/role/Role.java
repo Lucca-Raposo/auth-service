@@ -1,4 +1,4 @@
-package com.raposo.auth_service.entities;
+package com.raposo.auth_service.models.role;
 
 import jakarta.persistence.*;
 import lombok.Getter;

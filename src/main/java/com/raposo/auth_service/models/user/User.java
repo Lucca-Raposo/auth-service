@@ -1,9 +1,12 @@
-package com.raposo.auth_service.entities;
+package com.raposo.auth_service.models.user;
 
+import com.raposo.auth_service.models.role.Role;
+import com.raposo.auth_service.models.token.RefreshToken;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -15,20 +18,21 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "user_id")
     private UUID id;
 
     @Column(unique = true)
     private String username;
 
+    @Column(nullable = false)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "tb_users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<RefreshToken> refreshTokens;
+
+
 
 }

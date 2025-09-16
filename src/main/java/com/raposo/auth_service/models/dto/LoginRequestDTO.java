@@ -1,4 +1,4 @@
 package com.raposo.auth_service.models.dto;
 
-public record LoginRequestDTO() {
+public record LoginRequestDTO(String username, String password) {
 }
